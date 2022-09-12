@@ -1,4 +1,6 @@
 require("dotenv").config();
+
+/* Configuraciones predeterminadas para la aplicacion */
 module.exports = {
 	server: {
 		port: process.env.PORT,
@@ -10,6 +12,6 @@ module.exports = {
 		name_database: process.env.DATABASE,
 		pass: process.env.PASS,
 		host_database: process.env.HOST,
-		dialect_database: process.env.DIALECT
+		dialect_database: process.env.DIALECT,
 	},
 };

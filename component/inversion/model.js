@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const database = require("../../service/database");
 
+/* Modelo definido para manipular la base de datos segun la tabla*/
 const InversionModel = database.define(
 	"inversions",
 	{
@@ -11,7 +12,7 @@ const InversionModel = database.define(
 		},
 		fecha_inversion: {
 			type: DataTypes.DATE,
-			allowNull:false
+			allowNull: false,
 		},
 		valor_inicial: {
 			type: DataTypes.REAL,
@@ -27,7 +28,10 @@ const InversionModel = database.define(
 		},
 	},
 	{
-		timestamps: false
+		timestamps: false,
+	},
+	{
+		tableName: "inversions",
 	}
 );
 

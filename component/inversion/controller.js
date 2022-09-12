@@ -1,85 +1,68 @@
 const InversionModel = require("./model");
 
-async function getAllInversion(req, res) {
+/* Retorna todas las inversiones */
+async function getAllInversion() {
 	try {
 		const inversion = await InversionModel.findAll();
 		if (!inversion) return res.sendStatus(400);
-		return res.json(inversion);
+		return inversion;
 	} catch (error) {
-		return res.send({ message: error.message });
+		return { message: error.message };
 	}
 }
 
-async function getInversion(req, res) {
+/* Retorna una inversion segun el id */
+async function getInversion(id) {
 	try {
-		const id = req.params.id;
 		const inversion = await InversionModel.findAll({
 			where: { id_inversion: id },
 		});
 
 		if (!inversion) return res.sendStatus(400);
-		return res.json(inversion);
+		return inversion;
 	} catch (error) {
-		return res.send({ message: error.message });
+		return { message: error.message };
 	}
 }
 
-async function createInversion(req, res) {
+/* Crea una nueva inversion en la base de datos */
+async function createInversion(inversonBody) {
 	try {
-		const { fecha_inversion, valor_inicial, num_años, valor_final } = req.body;
-
-		const inversonBody = {
-			fecha_inversion,
-			valor_inicial,
-			num_años,
-			valor_final,
-		};
 		const inversion = await InversionModel.create(inversonBody);
 
 		if (!inversion) return res.sendStatus(400);
-		return res.json(inversion);
+		return inversion;
 	} catch (error) {
-		return res.send({ message: error });
+		return { message: error.message };
 	}
 }
 
-async function updateInversion(req, res) {
+/* Modifica algun dato de la inversion segun el id */
+async function updateInversion(id, inversonBody) {
 	try {
-		const id = req.params.id;
-
-		const { fecha_inversion, valor_inicial, num_años, valor_final } = req.body;
-
-		let inversonBody = {
-			fecha_inversion,
-			valor_inicial,
-			num_años,
-			valor_final,
-		};
-
 		const inversion = await InversionModel.update(inversonBody, {
 			returning: true,
-			plain: true,
 			where: { id_inversion: id },
 		});
 
 		if (!inversion) return res.sendStatus(400);
-		return res.json(inversion);
+		return inversion;
 	} catch (error) {
-		return res.send({ message: error.message });
+		return { message: error.message };
 	}
 }
 
-async function deleteInversion(req, res) {
+/* Elimina la inversion segun el id */
+async function deleteInversion(id) {
 	try {
-		const id = req.params.id;
 		const inversion = await InversionModel.destroy({
 			where: { id_inversion: id },
 		});
 
 		if (!inversion) return res.sendStatus(400);
-		return res.send("inversion eliminada");
+		return { message: "Se ha eliminado el registro" };
 	} catch (error) {
-		return res.send({ message: error.message });
+		return { message: error.message };
 	}
 }
 

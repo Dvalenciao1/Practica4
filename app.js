@@ -10,8 +10,9 @@ var app = express();
 app.use(logger("dev"));
 app.use(express.json());
 
-app.use("/inversion", routes);
+app.use("/principal", routes);
 
+//TODO: Conexion a la base de datos
 async function connectDB() {
 	try {
 		await db.authenticate();

@@ -3,6 +3,6 @@ const inversion = require("../component/inversion/routes");
 
 var router = express.Router();
 
-router.use("/", inversion);
+router.use("/inversion", inversion);
 
 module.exports = router;
