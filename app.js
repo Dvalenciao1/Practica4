@@ -10,7 +10,7 @@ var app = express();
 app.use(logger("dev"));
 app.use(express.json());
 
-app.use("/principal", routes);
+app.use("/", routes);
 
 //TODO: Conexion a la base de datos
 async function connectDB() {
